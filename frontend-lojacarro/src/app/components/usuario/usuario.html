@@ -1,0 +1,44 @@
+<div style="padding: 20px; max-width: 800px; margin: 0 auto; font-family: Arial, sans-serif;">
+  <h2>Gerenciamento de Usuários</h2>
+
+  <form (ngSubmit)="salvar()" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+    <input type="text" [(ngModel)]="novoUsuario.nome" name="nome" placeholder="Nome completo" required style="padding: 8px;">
+    <input type="email" [(ngModel)]="novoUsuario.email" name="email" placeholder="E-mail" required style="padding: 8px;">
+    <input type="password" [(ngModel)]="novoUsuario.senha" name="senha" placeholder="Senha" required style="padding: 8px;">
+    <select [(ngModel)]="novoUsuario.perfil" name="perfil" style="padding: 8px;">
+      <option value="USER">USER</option>
+      <option value="ADMIN">ADMIN</option>
+    </select>
+    <button type="submit" style="padding: 10px; background-color: #28a745; color: white; border: none; cursor: pointer;">
+      Salvar Usuário
+    </button>
+  </form>
+
+  <hr>
+
+  <h3>Lista de Usuários</h3>
+  <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th style="padding: 8px;">ID</th>
+        <th style="padding: 8px;">Nome</th>
+        <th style="padding: 8px;">E-mail</th>
+        <th style="padding: 8px;">Perfil</th>
+        <th style="padding: 8px;">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of usuarios">
+        <td style="padding: 8px;">{{ u.id }}</td>
+        <td style="padding: 8px;">{{ u.nome }}</td>
+        <td style="padding: 8px;">{{ u.email }}</td>
+        <td style="padding: 8px;">{{ u.perfil }}</td>
+        <td style="padding: 8px;">
+          <button (click)="deletar(u.id)" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+            Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
